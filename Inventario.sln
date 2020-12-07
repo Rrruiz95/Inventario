@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventario.COMMON", "Inventario.COMMON\Inventario.COMMON.csproj", "{D326856C-6F9C-4302-A69A-868678833BD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventario.DAL", "Inventario.DAL\Inventario.DAL.csproj", "{D15CA7EA-FFC7-47FE-8C2D-C61AE641C33A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D326856C-6F9C-4302-A69A-868678833BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D326856C-6F9C-4302-A69A-868678833BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D326856C-6F9C-4302-A69A-868678833BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D326856C-6F9C-4302-A69A-868678833BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15CA7EA-FFC7-47FE-8C2D-C61AE641C33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15CA7EA-FFC7-47FE-8C2D-C61AE641C33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15CA7EA-FFC7-47FE-8C2D-C61AE641C33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15CA7EA-FFC7-47FE-8C2D-C61AE641C33A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55284479-F890-42BF-9EB1-6371C50180B4}
+	EndGlobalSection
+EndGlobal
