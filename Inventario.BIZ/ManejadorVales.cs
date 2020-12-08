@@ -36,5 +36,15 @@ namespace Inventario.BIZ
         {
             return repositorio.Update(entidad);
         }
+
+        public List<Vale> ValesEnIntervalo(DateTime inicio, DateTime fin)
+        {
+            return Listar.Where(e => e.FechaHoraSolicitud == inicio && e.FechaHoraSolicitud == fin).ToList();
+        }
+
+        public List<Vale> ValesPorLiquidar()
+        {
+            return Listar.Where(e => e.FechaEntregaReal == null).ToList();
+        }
     }
 }

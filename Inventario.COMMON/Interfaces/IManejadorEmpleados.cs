@@ -7,5 +7,6 @@ namespace Inventario.COMMON.Interfaces
 {
     public interface IManejadorEmpleados : IManejadorGenerico<Empleado>
     {
+        List<Empleado> EMpleadoPorArea(string area);
     }
 }

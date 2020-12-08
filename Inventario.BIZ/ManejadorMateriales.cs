@@ -32,6 +32,11 @@ namespace Inventario.BIZ
             return repositorio.Delete(id);
         }
 
+        public List<Material> MaterialesDeCategoria(string categoria)
+        {
+            return Listar.Where(e => e.Categoria == categoria).ToList();
+        }
+
         public bool Modificar(Material entidad)
         {
             return repositorio.Update(entidad);
