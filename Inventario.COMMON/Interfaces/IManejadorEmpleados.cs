@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Inventario.COMMON.Interfaces
 {
-    interface IManejadorEmpleados : IManejadorGenerico<Empleado>
+    public interface IManejadorEmpleados : IManejadorGenerico<Empleado>
     {
     }
 }

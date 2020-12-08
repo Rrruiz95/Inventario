@@ -7,22 +7,22 @@ using System.Text;
 
 namespace Inventario.BIZ
 {
-    public class ManejadorVales : IManejadorVales
+    public class ManejadorMateriales : IManejadorMateriales
     {
-        IRepositorio<Vale> repositorio;
-        public ManejadorVales(IRepositorio<Vale> repositorio)
+        IRepositorio<Material> repositorio;
+        public ManejadorMateriales(IRepositorio<Material> repositorio)
         {
             this.repositorio = repositorio;
         }
 
-        public List<Vale> Listar => repositorio.Read;
+        public List<Material> Listar => repositorio.Read;
 
-        public bool Agregar(Vale entidad)
+        public bool Agregar(Material entidad)
         {
             return repositorio.Create(entidad);
         }
 
-        public Vale BuscarPorId(string id)
+        public Material BuscarPorId(string id)
         {
             return Listar.Where(e => e.Id == id).SingleOrDefault();
         }
@@ -32,7 +32,7 @@ namespace Inventario.BIZ
             return repositorio.Delete(id);
         }
 
-        public bool Modificar(Vale entidad)
+        public bool Modificar(Material entidad)
         {
             return repositorio.Update(entidad);
         }
