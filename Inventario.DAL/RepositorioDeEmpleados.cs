@@ -61,6 +61,11 @@ namespace Inventario.DAL
             }
         }
 
+        public bool Delete(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(Empleado entidadModificada)
         {
             try
