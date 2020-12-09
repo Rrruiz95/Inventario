@@ -80,9 +80,40 @@ namespace Inventario.GUI.Administrador
         {
             if (accionEmpleados == accion.Nuevo)
             {
-                Empleado emp = new Empleado();
-                { 
-                    //Ingresar datos
+                Empleado emp = new Empleado()
+                {
+                    Nombre = txbEmpleadosNombre.Text,
+                    Apellidos = txbEmpleadosApellidos.Text,
+                    Area = txbEmpleadosArea.Text
+                };
+                if (manejdorEmpleados.Agregar(emp))
+                {
+                    MessageBox.Show("Empleado agregado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCamposDeEmpleados();
+                    ActualizarTablaEmpleados();
+                    PonerBontonesEmpleadosEnEdicion(false);
+                }
+                else 
+                {
+                    MessageBox.Show("El Empleado no se pudo agregar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                Empleado emp = dtgEmpleados.SelectedItem as Empleado;
+                emp.Apellidos = txbEmpleadosApellidos.Text;
+                emp.Area = txbEmpleadosArea.Text;
+                emp.Nombre = txbEmpleadosNombre.Text;
+                if (manejdorEmpleados.Modificar(emp))
+                {
+                    MessageBox.Show("Empleado actualizado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCamposDeEmpleados();
+                    ActualizarTablaEmpleados();
+                    PonerBontonesEmpleadosEnEdicion(false);
+                }
+                else
+                {
+                    MessageBox.Show("El Empleado no se pudo actualizar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -105,12 +136,12 @@ namespace Inventario.GUI.Administrador
                         MessageBox.Show("Empleado eliminado", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
                         ActualizarTablaEmpleados();
                     }
-                    else 
+                    else
                     {
-                        MessageBox.Show("No se pudo eliminar el empleado", "Inventarios", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                        MessageBox.Show("No se pudo eliminar el empleado", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                }
-            }
+                }    
+            }     
         }
 
         private void btnEmpleadosEditar_Click_1(object sender, RoutedEventArgs e)
