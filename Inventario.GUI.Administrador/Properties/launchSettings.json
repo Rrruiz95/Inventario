@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Inventario.GUI.Administrador": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

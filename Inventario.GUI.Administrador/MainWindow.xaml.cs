@@ -30,133 +30,138 @@ namespace Inventario.GUI.Administrador
             Editar
         }
 
-        IManejadorEmpleados manejdorEmpleados;
+        IManejadorMateriales manejdorMateriales;
 
-        accion accionEmpleados;
+        accion accionMateriales;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            manejdorEmpleados = new ManejadorEmpleados(new RepositorioDeEmpleados());
+            manejdorMateriales = new ManejadorMateriales(new RepositorioDeMaterial());
 
-            PonerBontonesEmpleadosEnEdicion(false);
-            LimpiarCamposDeEmpleados();
-            ActualizarTablaEmpleados();
+            PonerBontonesMaterialesEnEdicion(false);
+            LimpiarCamposDeMateriales();
+            ActualizarTablaMateriales();
         }
 
-        private void ActualizarTablaEmpleados()
+        private void ActualizarTablaMateriales()
         {
-            dtgEmpleados.ItemsSource = null;
-            dtgEmpleados.ItemsSource = manejdorEmpleados.Listar;
+            dtgMateriales.ItemsSource = null;
+            dtgMateriales.ItemsSource = manejdorMateriales.Listar;
         }
 
-        private void LimpiarCamposDeEmpleados()
+        private void LimpiarCamposDeMateriales()
         {
-            txbEmpleadosApellidos.Clear();
-            txbEmpleadosArea.Clear();
-            txbEmpleadosId.Text = "";
-            txbEmpleadosNombre.Clear();
+            txbMaterialCategoria.Clear();
+            txbMaterialDescripcion.Clear();
+            txbMaterialExitencia.Clear();
+            txbMaterialId.Text = "";
+            txbMaterialNombre.Clear();
         }
 
-        private void PonerBontonesEmpleadosEnEdicion(bool value)
+        private void PonerBontonesMaterialesEnEdicion(bool value)
         {
-            btnEmpleadosCancelar.IsEnabled = value;
-            btnEmpleadosEditar.IsEnabled = !value;
-            btnEmpleadosEliminar.IsEnabled = !value;
-            btnEmpleadosGuardar.IsEnabled = value;
-            btnEmpleadosNuevo.IsEnabled = !value;
+            btnMaterialesCancelar.IsEnabled = value;
+            btnMaterialesEditar.IsEnabled = !value;
+            btnMaterialesEliminar.IsEnabled = !value;
+            btnMaterialesGuardar.IsEnabled = value;
+            btnMaterialesNuevo.IsEnabled = !value;
         }
 
-        private void btnEmpleadosNuevo_Click(object sender, RoutedEventArgs e)
+        private void btnMaterialesNuevo_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCamposDeEmpleados();
-            PonerBontonesEmpleadosEnEdicion(true);
-            accionEmpleados = accion.Nuevo;
+            LimpiarCamposDeMateriales();
+            PonerBontonesMaterialesEnEdicion(true);
+            accionMateriales = accion.Nuevo;
 
         }
 
-        private void btnEmpleadosGuardar_Click(object sender, RoutedEventArgs e)
+        private void btnMaterialesGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (accionEmpleados == accion.Nuevo)
+            if (accionMateriales == accion.Nuevo)
             {
-                Empleado emp = new Empleado()
+                Material emp = new Material()
                 {
-                    Nombre = txbEmpleadosNombre.Text,
-                    Apellidos = txbEmpleadosApellidos.Text,
-                    Area = txbEmpleadosArea.Text
+                    Nombre = txbMaterialNombre.Text,
+                    Categoria = txbMaterialCategoria.Text,
+                    Descripcion = txbMaterialDescripcion.Text,
+                    Existencia = txbMaterialExitencia.Text
+
                 };
-                if (manejdorEmpleados.Agregar(emp))
+                if (manejdorMateriales.Agregar(emp))
                 {
-                    MessageBox.Show("Empleado agregado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimpiarCamposDeEmpleados();
-                    ActualizarTablaEmpleados();
-                    PonerBontonesEmpleadosEnEdicion(false);
+                    MessageBox.Show("Artículo agregado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCamposDeMateriales();
+                    ActualizarTablaMateriales();
+                    PonerBontonesMaterialesEnEdicion(false);
                 }
                 else 
                 {
-                    MessageBox.Show("El Empleado no se pudo agregar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("El Artículo no se pudo agregar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                Empleado emp = dtgEmpleados.SelectedItem as Empleado;
-                emp.Apellidos = txbEmpleadosApellidos.Text;
-                emp.Area = txbEmpleadosArea.Text;
-                emp.Nombre = txbEmpleadosNombre.Text;
-                if (manejdorEmpleados.Modificar(emp))
+                Material mat = dtgMateriales.SelectedItem as Material;
+                mat.Nombre = txbMaterialNombre.Text;
+                mat.Categoria = txbMaterialCategoria.Text;
+                mat.Descripcion = txbMaterialDescripcion.Text;
+                mat.Existencia = txbMaterialExitencia.Text;
+                if (manejdorMateriales.Modificar(mat))
                 {
-                    MessageBox.Show("Empleado actualizado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimpiarCamposDeEmpleados();
-                    ActualizarTablaEmpleados();
-                    PonerBontonesEmpleadosEnEdicion(false);
+                    MessageBox.Show("Artículo actualizado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCamposDeMateriales();
+                    ActualizarTablaMateriales();
+                    PonerBontonesMaterialesEnEdicion(false);
                 }
                 else
                 {
-                    MessageBox.Show("El Empleado no se pudo actualizar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("El Artículo no se pudo actualizar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
-        private void btnEmpleadosCancelar_Click(object sender, RoutedEventArgs e)
+        private void btnMaterialesCancelar_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCamposDeEmpleados();
-            PonerBontonesEmpleadosEnEdicion(false);
+            LimpiarCamposDeMateriales();
+            PonerBontonesMaterialesEnEdicion(false);
         }
 
-        private void btnEmpleadosEliminar_Click(object sender, RoutedEventArgs e)
+        private void btnMaterialesEliminar_Click(object sender, RoutedEventArgs e)
         {
-            Empleado emp = dtgEmpleados.SelectedItem as Empleado;
-            if (emp != null)
+            Material mat = dtgMateriales.SelectedItem as Material;
+            if (mat != null)
             {
                 if (MessageBox.Show("¿Desea eliminar al empleado?", "Inventarios", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    if (manejdorEmpleados.Eliminar(emp.Id))
+                    if (manejdorMateriales.Eliminar(mat.Id))
                     {
-                        MessageBox.Show("Empleado eliminado", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTablaEmpleados();
+                        MessageBox.Show("Artículo eliminado", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ActualizarTablaMateriales();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo eliminar el empleado", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("No se pudo eliminar el artículo", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }    
             }     
         }
 
-        private void btnEmpleadosEditar_Click_1(object sender, RoutedEventArgs e)
+        private void btnMaterialesEditar_Click(object sender, RoutedEventArgs e)
         {
-            Empleado emp = dtgEmpleados.SelectedItem as Empleado;
-            if (emp != null)
+            Material mat = dtgMateriales.SelectedItem as Material;
+            if (mat != null)
             {
-                txbEmpleadosId.Text = emp.Id;
-                txbEmpleadosApellidos.Text = emp.Apellidos;
-                txbEmpleadosArea.Text = emp.Area;
-                txbEmpleadosNombre.Text = emp.Nombre;
+                txbMaterialId.Text = mat.Id;
+                txbMaterialNombre.Text = mat.Nombre;
+                txbMaterialCategoria.Text = mat.Categoria;
+                txbMaterialExitencia.Text = mat.Existencia;
 
-                accionEmpleados = accion.Editar;
-                PonerBontonesEmpleadosEnEdicion(true);
+                accionMateriales = accion.Editar;
+                PonerBontonesMaterialesEnEdicion(true);
             }
         }
+
     }
 }

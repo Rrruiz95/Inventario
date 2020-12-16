@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Inventario.DAL
 {
-    class RepositorioDeMaterial : IRepositorio<Material>
+    public class RepositorioDeMaterial : IRepositorio<Material>
     {
         private string DBName = "Inventario.db";
         private string TableName = "Material";
