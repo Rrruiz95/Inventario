@@ -89,14 +89,18 @@ namespace Inventario.GUI.Administrador
                     Existencia = txbMaterialExitencia.Text
 
                 };
-                if (manejdorMateriales.Agregar(emp))
+                if (txbMaterialNombre.Text == "" && txbMaterialCategoria.Text == "" && txbMaterialDescripcion.Text == "" && txbMaterialExitencia.Text == "")
+                {
+                    MessageBox.Show("Ingrese un artículo", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (manejdorMateriales.Agregar(emp))
                 {
                     MessageBox.Show("Artículo agregado correctamente", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimpiarCamposDeMateriales();
                     ActualizarTablaMateriales();
                     PonerBontonesMaterialesEnEdicion(false);
                 }
-                else 
+                else
                 {
                     MessageBox.Show("El Artículo no se pudo agregar", "Inventarios", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

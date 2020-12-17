@@ -43,14 +43,14 @@ namespace Inventario.DAL
             }
         }
 
-        public bool Delete(string id, Material entidad)
+        public bool Delete(string id)
         {
             try
             {
                 using (var db = new LiteDatabase(DBName))
                 {
                     var coleccion = db.GetCollection<Material>(TableName);
-                    coleccion.Delete(entidad.Id == id);
+                    coleccion.Delete(id);
                 }
                 return true;
             }
@@ -58,11 +58,6 @@ namespace Inventario.DAL
             {
                 return false;
             }
-        }
-
-        public bool Delete(string id)
-        {
-            throw new NotImplementedException();
         }
 
         public bool Update(Material entidadModificada)
